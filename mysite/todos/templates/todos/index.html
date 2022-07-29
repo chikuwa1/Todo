@@ -1,0 +1,32 @@
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <title>TODOリスト</title>
+</head>
+
+<body>
+
+    <div>
+        <h1>TODOリスト</h1>
+        <h2>締め切りが近いTodoリスト</h2>
+
+        {% if latest_todo_list %}
+        <ul>
+            {% for todo in latest_todo_list %}
+            <li><a href="{% url 'todos:detail' todo.id %}">{{ todo.name }} </a></li>
+            締切：{{ todo.deadline | date:'Y/m/d H:i' }}
+            <p></p>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p> No todos! Let's create todos:) </p>
+        {% endif %}
+
+    </div>
+</body>
+
+</html>
+
+
+<!--以降に優先度順のリストを表示するurlを表示するように設定する-->

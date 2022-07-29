@@ -1,0 +1,13 @@
+<h1>TODOリスト</h1>
+<div>
+    <h1>{{ todo.name }}</h1>
+    <h2>詳細</h2>
+
+    <h3>{{ todo.detail }}</h3>
+    <p></p>
+    <h2>締め切り：{{ todo.deadline | date:'Y/m/d H:i' }}</h2>
+    <h2>優先度：{{ todo.priolity }}</h2>
+
+</div>
+
+<p> <a href="{% url 'todos:index' %}">◁ ホームに戻る</a> </p>

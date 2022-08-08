@@ -57,11 +57,16 @@ def end(request):
 #     response = " end"
 #     return HttpResponse(response %todo_id)
 
-# def Delete(request, todo_id):
-#     obj = get_object_or_404(Todo, pk=todo_id)
-#     Todo.objects.filter(pk=todo_id).delete()
-#     return render(request, 'todos/delete.html')
+def deleteAlert(request, todo_id):
+    todo = get_object_or_404(Todo, pk=todo_id)
+    return render(request, 'todos/delete_alert.html',{'todo': todo})
 
-class DeleteView(generic.DeleteView):
-    model = Todo
-    template_name = 'todos/delete.html'
+def delete(request, todo_id):
+    todo = get_object_or_404(Todo, pk=todo_id)
+    if request.POST:
+        todo.delete()
+    return render(request, 'todos/delete.html', {"todo": todo})
+
+# class DeleteView(generic.DeleteView):
+#     model = Todo
+#     template_name = 'todos/delete.html'

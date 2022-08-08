@@ -19,11 +19,11 @@
         {% if latest_todo_list %}
         <ul>
             {% for todo in latest_todo_list %}
-            <li><a href="{% url 'todos:detail' todo.id %}">{{ todo.name }} </a></li>
-            締切：{{ todo.deadline | date:'Y/m/d H:i' }}
-            <form action="{% url 'todos:delete' %}" method="post">
+            <li><a href="{% url 'todos:detail' todo.id %}">{{ todo.name }} </a> &nbsp;
+                締切：{{ todo.deadline | date:'Y/m/d H:i' }}</li>
+            <form action="{% url 'todos:delete_alert' todo.id %}" method="post">
                 {% csrf_token %}
-                <button type="submit"value="削除">削除</button>
+                <input type="submit" value="完了/削除">
             </form>
             <p></p>
             {% endfor %}

@@ -21,7 +21,7 @@ class IndexView(generic.ListView):
     context_object_name = 'latest_todo_list'
     
     def get_queryset(self):
-        return Todo.objects.order_by('deadline')[:5]
+        return Todo.objects.order_by('deadline')
 
 # #Todoの詳細を表示する機能
 # def detail(request, todo_id):

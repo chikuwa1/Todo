@@ -50,17 +50,19 @@ def complete(request,todo_id):
 
 def end(request):
     # todo = get_object_or_404(Todo)
-    Todo.objects.create(name=request.POST['name'], detail=request.POST['detail'], deadline=request.POST['deadline'])
+    Todo.objects.create(name=request.POST['name'], detail=request.POST['detail'], deadline=request.POST['deadline'], priolity=request.POST['priolity'])
     return render(request, 'todos/end.html')
 
 # def EndView(request, todo_id):
 #     response = " end"
 #     return HttpResponse(response %todo_id)
 
+#Todoを削除する際の確認機能
 def deleteAlert(request, todo_id):
     todo = get_object_or_404(Todo, pk=todo_id)
     return render(request, 'todos/delete_alert.html',{'todo': todo})
 
+#Todoを削除する機能
 def delete(request, todo_id):
     todo = get_object_or_404(Todo, pk=todo_id)
     if request.POST:

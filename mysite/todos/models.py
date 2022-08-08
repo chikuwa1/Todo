@@ -2,11 +2,11 @@ from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 PRIOLITY_COICES = (
-    (1, '１(低い)'),
-    (2, '２(少し低い)'),
-    (3, '３(普通)'),
-    (4, '４(少し高い)'),
-    (5, '５(高い)'),
+    (1, '1'),
+    (2, '2'),
+    (3, '3'),
+    (4, '4'),
+    (5, '5'),
 )
 
 class Todo(models.Model):

@@ -4,14 +4,15 @@
     {% csrf_token %}
     <h1>TODOリスト</h1>
     <h2>やるべきことを追加しよう(^▽^)/</h2>
+    <p>※「やるべきこと」と「締め切り」は必ず入力してください😎</p>
     {% if error_message %}
     <p>{{ error_message }}</p>
     {% endif %}
     <fieldset>
-        <p>やるべきこと：<input type="text" name='name' size="50" maxlength="50" placeholder="50字以内で入力"></p>
+        <p>やるべきこと：<input type="text" name='name' size="50" maxlength="50" placeholder="50字以内で入力" required></p>
         <p>詳細：</p>
         <p><textarea name="detail" cols="50" rows="4" maxlength="200" placeholder="200字以内で入力"></textarea></p>
-        <p>締め切り：<input type="datetime-local" name="deadline" size="50"></p>
+        <p>締め切り：<input type="datetime-local" name="deadline" size="50" required></p>
         <!--優先度：
             <select name="priolity" id="priolity" size="5">
                 <option value="5">5</option>

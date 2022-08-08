@@ -6,9 +6,14 @@
 </head>
 
 <body>
-
     <div>
         <h1>TODOリスト</h1>
+
+        <p>Menu：&nbsp;
+            <a href="{% url 'todos:create'%}"> ▷ Todoを追加する😉</a>&emsp;&emsp;<a href="{% url 'todos:index'%}">▷
+                締め切りが近いTodoリスト</a>
+        </p>
+
         <h2>締め切りが近いTodoリスト</h2>
 
         {% if latest_todo_list %}
@@ -16,6 +21,10 @@
             {% for todo in latest_todo_list %}
             <li><a href="{% url 'todos:detail' todo.id %}">{{ todo.name }} </a></li>
             締切：{{ todo.deadline | date:'Y/m/d H:i' }}
+            <form action="{% url 'todos:delete' %}" method="post">
+                {% csrf_token %}
+                <button type="submit"value="削除">削除</button>
+            </form>
             <p></p>
             {% endfor %}
         </ul>

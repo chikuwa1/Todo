@@ -56,3 +56,12 @@ def end(request):
 # def EndView(request, todo_id):
 #     response = " end"
 #     return HttpResponse(response %todo_id)
+
+# def Delete(request, todo_id):
+#     obj = get_object_or_404(Todo, pk=todo_id)
+#     Todo.objects.filter(pk=todo_id).delete()
+#     return render(request, 'todos/delete.html')
+
+class DeleteView(generic.DeleteView):
+    model = Todo
+    template_name = 'todos/delete.html'

@@ -36,7 +36,7 @@
                     締切：{{ todo.deadline | date:'Y/m/d H:i' }}</li>
                 <form action="{% url 'todos:delete_alert' todo.id %}" method="post">
                     {% csrf_token %}
-                    <input type="submit" value="削除">
+                    <input type="submit" class="btn btn-danger btn-sm" value="削除">
                 </form>
                 <p></p>
                 {% endfor %}

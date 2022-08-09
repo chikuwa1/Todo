@@ -1,37 +1,50 @@
+<!--ホーム画面-->
+<!DOCTYPE html>
 <html lang="ja">
 
 <head>
     <meta charset="utf-8">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'todos/style.css' %}">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <title>TODOリスト</title>
 </head>
 
 <body>
+    <h1 class="title">TODOリスト</h1>
+
+    <ul class="breadcrumb">
+        Menu：
+        <li><a href="{% url 'todos:create'%}"> ▷ Todoを追加する😉</a></li>
+        <li><a href="{% url 'todos:index'%}">▷ 締め切りが近いTodoリスト</a></li>
+    </ul>
     <div>
-        <h1>TODOリスト</h1>
-
-        <p>Menu：&nbsp;
-            <a href="{% url 'todos:create'%}"> ▷ Todoを追加する😉</a>&emsp;&emsp;<a href="{% url 'todos:index'%}">▷
-                締め切りが近いTodoリスト</a>
-        </p>
-
         <h2>⚠ 締め切りが近いTodoリスト</h2>
-
-        {% if latest_todo_list %}
-        <ul>
-            {% for todo in latest_todo_list %}
-            <li><a href="{% url 'todos:detail' todo.id %}">{{ todo.name }} </a> &nbsp;
-                締切：{{ todo.deadline | date:'Y/m/d H:i' }}</li>
-            <form action="{% url 'todos:delete_alert' todo.id %}" method="post">
-                {% csrf_token %}
-                <input type="submit" value="完了/削除">
-            </form>
-            <p></p>
-            {% endfor %}
-        </ul>
-        {% else %}
-        <p> No todos! Let's create todos:) </p>
-        {% endif %}
-
+        <div>
+            <h4>Todoが完了したら削除しよう！</h4>
+            {% if nearest_todo_list %}
+            <ul>
+                {% for todo in nearest_todo_list %}
+                <li class="nearest"><a href="{% url 'todos:detail' todo.id %}" data-toggle="tooltip"
+                        data-placement="bottom" title="Todoの内容・詳細へ">{{ todo.name }}
+                    </a>
+                    &nbsp;
+                    締切：{{ todo.deadline | date:'Y/m/d H:i' }}</li>
+                <form action="{% url 'todos:delete_alert' todo.id %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="削除">
+                </form>
+                <p></p>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p> No todos! Let's create todos:) </p>
+            {% endif %}
+        </div>
     </div>
 </body>
 

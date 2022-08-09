@@ -1,22 +1,30 @@
+<!--Todoの削除確認画面-->
+
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
-    <title>Todoの完了・削除</title>
+    <title>Todo削除の確認</title>
 </head>
 
 <body>
-    <h1>Todo完了・削除確認画面</h1>
-    <p>
-        Todoを消去しますと復旧ができません。よろしいですか？
-    </p>
-    <form action="{% url 'todos:delete' todo.id %}" method="post">
-        {% csrf_token %}
-        <p>やるべきこと：{{ todo.name }}</p>
-        <p>締め切り：{{ todo.deadline | date:'Y/m/d H:i' }}</p>
-        <input type="submit" value="完了/削除">
-    </form>
+    <h1>Todo削除の確認</h1>
+    <p>一度消去しますと復旧ができません。Todoを削除しますか？</p>
+
+    <div>
+        <h3>削除するTodo</h3>
+        <fieldset>
+            <p>やるべきこと：{{ todo.name }}</p>
+            <p>内容・詳細：{{ todo.detail }}</p>
+            <p>締め切り：{{ todo.deadline | date:'Y/m/d H:i' }}</p>
+            <p>優先度：{{ todo.priolity }}</p>
+            <form action="{% url 'todos:delete' todo.id %}" method="post">
+                {% csrf_token %}
+                <input type="submit" value="完了/削除">
+            </form>
+        </fieldset>
+    </div>
 
     <p> <a href="{% url 'todos:index' %}">◁ ホームに戻る</a> </p>
 </body>

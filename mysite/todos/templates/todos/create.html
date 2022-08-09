@@ -1,27 +1,41 @@
-<!--todoをリストに追加するフォームを作る場所-->
+<!--Todoをリストに作成するフォーム-->
 
-<form action="{% url 'todos:end' %}" method="post">
-    {% csrf_token %}
-    <h1>TODOリスト</h1>
-    <h2>やるべきことを追加しよう(^▽^)/</h2>
-    <p>※「やるべきこと」と「締め切り」は必ず入力してください😎</p>
-    {% if error_message %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <title>Todoの作成</title>
+</head>
+
+<body>
+    <div>
+        <h1>Todo作成画面</h1>
+        <h2>やるべきことを追加しよう(^▽^)/</h2>
+        <p>※「やるべきこと」と「締め切り」は必ず入力してください😎</p>
+        <form action="{% url 'todos:create_conf' %}" method="post">
+            {% csrf_token %}
+            <!-- {% if error_message %}
     <p>{{ error_message }}</p>
-    {% endif %}
-    <fieldset>
-        <p>やるべきこと：<input type="text" name='name' size="50" maxlength="50" placeholder="50字以内で入力" required></p>
-        <p>詳細：</p>
-        <p><textarea name="detail" cols="50" rows="4" maxlength="200" placeholder="200字以内で入力"></textarea></p>
-        <p>締め切り：<input type="datetime-local" name="deadline" size="50" required></p>
-        優先度：
-        <select name="priolity" id="priolity" size="5">
-            <option value="5">5</option>
-            <option value="4">4</option>
-            <option value="3">3</option>
-            <option value="2">2</option>
-            <option value="1" selected>1</option>
-        </select>
-        <p><button type="submit" value="追加">追加</button></p>
+    {% endif %} -->
+            <fieldset>
+                <p>やるべきこと：<input type="text" name='name' size="50" maxlength="50" placeholder="50字以内で入力" required></p>
+                <p>内容・詳細：</p>
+                <p><textarea name="detail" cols="50" rows="4" maxlength="200" placeholder="200字以内で入力"></textarea></p>
+                <p>締め切り：<input type="datetime-local" name="deadline" size="50" required></p>
+                優先度：
+                <select name="priolity" id="priolity" size="1" required>
+                    <option value="5">5</option>
+                    <option value="4">4</option>
+                    <option value="3">3</option>
+                    <option value="2">2</option>
+                    <option value="1">1</option>
+                </select>
+                <p><button type="submit" value="追加">追加</button></p>
 
-    </fieldset>
-</form>
+            </fieldset>
+        </form>
+    </div>
+</body>
+
+</html>

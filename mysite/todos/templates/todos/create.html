@@ -5,36 +5,56 @@
 
 <head>
     <meta charset="utf-8">
+    {% load static %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'todos/style.css' %}">
     <title>Todoの作成</title>
 </head>
 
 <body>
+    <h1 class="title">TODOリスト</h1>
+    <ul class="breadcrumb">
+        Menu：
+        <li><a href="{% url 'todos:index'%}">▷ ホーム🏡</a></li>
+        <li><a href="{% url 'todos:create'%}"> ▷ Todoを追加する😉</a></li>
+    </ul>
     <div>
         <h1>Todo作成画面</h1>
-        <h2>やるべきことを追加しよう(^▽^)/</h2>
-        <p>※「やるべきこと」と「締め切り」は必ず入力してください😎</p>
-        <form action="{% url 'todos:create_conf' %}" method="post">
-            {% csrf_token %}
-            <!-- {% if error_message %}
-    <p>{{ error_message }}</p>
-    {% endif %} -->
-            <fieldset>
-                <p>やるべきこと：<input type="text" name='name' size="50" maxlength="50" placeholder="50字以内で入力" required></p>
-                <p>内容・詳細：</p>
-                <p><textarea name="detail" cols="50" rows="4" maxlength="200" placeholder="200字以内で入力"></textarea></p>
-                <p>締め切り：<input type="datetime-local" name="deadline" size="50" required></p>
-                優先度：
-                <select name="priolity" id="priolity" size="1" required>
-                    <option value="5">5</option>
-                    <option value="4">4</option>
-                    <option value="3">3</option>
-                    <option value="2">2</option>
-                    <option value="1">1</option>
-                </select>
-                <p><button type="submit" value="追加">追加</button></p>
+        <div>
+            <h2>やるべきことを追加しよう(^▽^)/</h2>
+            <p>※「やるべきこと」と「締め切り」は必ず入力してください😎</p>
+            <form action="{% url 'todos:create_conf' %}" method="post">
+                <!-- {% csrf_token %}
+            {% if error_messages %}
+            {% for error_messege in error_messeges %}
+            <p>{{ error_message }}</p>
+            {% endfor %}
+            {% endif %} -->
 
-            </fieldset>
-        </form>
+                <fieldset class="create_form">
+                    <p>やるべきこと：<input type="text" name='name' size="50" maxlength="50" placeholder="50字以内で入力" required>
+                    </p>
+                    <p>内容・詳細：</p>
+                    <p><textarea name="detail" cols="50" rows="4" maxlength="200" placeholder="200字以内で入力"></textarea>
+                    </p>
+                    <p>締め切り：<input type="datetime-local" name="deadline" size="50" required></p>
+                    優先度：
+                    <select name="priolity" id="priolity" size="1">
+                        <option value="5">5</option>
+                        <option value="4">4</option>
+                        <option value="3">3</option>
+                        <option value="2">2</option>
+                        <option value="1" selected>1</option>
+                    </select>
+                    <p><button type="submit" value="追加">追加</button></p>
+
+                </fieldset>
+            </form>
+        </div>
+        <p><a href="{% url 'todos:index' %}">◁ ホームに戻る</a> </p>
     </div>
 </body>
 

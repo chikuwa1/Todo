@@ -20,31 +20,34 @@
 
     <ul class="breadcrumb">
         Menu：
+        <li><a href="{% url 'todos:index'%}">▷ ホーム🏡</a></li>
         <li><a href="{% url 'todos:create'%}"> ▷ Todoを追加する😉</a></li>
-        <li><a href="{% url 'todos:index'%}">▷ 締め切りが近いTodoリスト</a></li>
     </ul>
     <div>
-        <h2>⚠ 締め切りが近いTodoリスト</h2>
+        <h1>ホーム</h1>
         <div>
-            <h4>Todoが完了したら削除しよう！</h4>
-            {% if nearest_todo_list %}
-            <ul>
-                {% for todo in nearest_todo_list %}
-                <li class="nearest"><a href="{% url 'todos:detail' todo.id %}" data-toggle="tooltip"
-                        data-placement="bottom" title="Todoの内容・詳細へ">{{ todo.name }}
-                    </a>
-                    &nbsp;
-                    締切：{{ todo.deadline | date:'Y/m/d H:i' }}</li>
-                <form action="{% url 'todos:delete_alert' todo.id %}" method="post">
-                    {% csrf_token %}
-                    <input type="submit" class="btn btn-danger btn-sm" value="削除">
-                </form>
-                <p></p>
-                {% endfor %}
-            </ul>
-            {% else %}
-            <p> No todos! Let's create todos:) </p>
-            {% endif %}
+            <h2>締め切りが近い順 Todoリスト</h2>
+            <div>
+                <h4>Todoが完了したら削除しよう！</h4>
+                {% if nearest_todo_list %}
+                <ul>
+                    {% for todo in nearest_todo_list %}
+                    <li class="nearest"><a href="{% url 'todos:detail' todo.id %}" data-toggle="tooltip"
+                            data-placement="bottom" title="Todoの内容・詳細へ">{{ todo.name }}
+                        </a>
+                        &nbsp;
+                        締切：{{ todo.deadline | date:'Y/m/d H:i' }}</li>
+                    <form action="{% url 'todos:delete_alert' todo.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="submit" class="btn btn-danger btn-sm" value="削除">
+                    </form>
+                    <p></p>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p> No todos! Let's create todos:) </p>
+                {% endif %}
+            </div>
         </div>
     </div>
 </body>

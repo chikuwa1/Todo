@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
+import datetime
 
 PRIOLITY_COICES = (
     (1, '1'),
@@ -17,3 +18,7 @@ class Todo(models.Model):
     
     def __str__(self):
         return self.name
+    
+    # @property
+    # def is_past_deadline(self):
+    #     return datetime.datetime.now() > self.deadline

@@ -3,9 +3,10 @@ from django.template import loader
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.views import generic
-
-
 from .models import Todo
+from django.utils import timezone
+
+import datetime
 
 # 締め切り順にTodoリストを表示する機能
 # def index(request):
@@ -38,7 +39,7 @@ class DetailView(generic.DetailView):
 #     return render(request, 'todos/create.html')
 
 def create(request):
-        return render(request, 'todos/create.html')
+    return render(request, 'todos/create.html')
 
 
 # Todoを終了した際の表示 #これいらない、削除
@@ -49,8 +50,26 @@ def complete(request,todo_id):
 #     return HttpResponse(response % todo_id)
 
 def createConf(request):
-    Todo.objects.create(name=request.POST['name'], detail=request.POST['detail'], deadline=request.POST['deadline'], priolity=request.POST['priolity'])
-    return render(request, 'todos/create_conf.html')
+    today = datetime.datetime.now()
+    # now = timezone.now()
+    deadline = datetime.datetime.strptime(request.POST['deadline'], '%Y-%m-%dT%H:%M')
+    # if  deadline <= today:
+    #     return render(request, 'todos/create_alert.html')
+    
+    # else :
+    #     Todo.objects.create(name=request.POST['name'], detail=request.POST['detail'], deadline=request.POST['deadline'], priolity=request.POST['priolity'])
+    #     return render(request, 'todos/create_conf.html') 
+
+    # if is_past_deadline(deadline):
+
+    if deadline < today:
+        return render(request, 'todos/create_alert.html')
+    
+    else :
+        Todo.objects.create(name=request.POST['name'], detail=request.POST['detail'], deadline=request.POST['deadline'], priolity=request.POST['priolity'])
+        return render(request, 'todos/create_conf.html') 
+
+
 
 # def EndView(request, todo_id):
 #     response = " end"

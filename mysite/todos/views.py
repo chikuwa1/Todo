@@ -49,26 +49,8 @@ def complete(request,todo_id):
 #     return HttpResponse(response % todo_id)
 
 def createConf(request):
-    # today = datetime.datetime.now()
-    # form_error_messages = []
-
-    # if request.POST['name'] == '':
-    #     form_error_messages = "「やるべきこと」が未入力です。必ず入力してください。"
-    
-    # if request.POST['deadline'] == '':
-    #     form_error_message = "「締め切り」が未入力です。必ず入力してください。"
-    
-    # if request.POST['deadline'] 
-
-    # if form_error_messages != '':
-    #     template = loader.get_template('todos/create.html')
-    #     context = {
-    #         'error_messages': form_error_messages
-    #     }
-    #     return HttpResponse(template.render(context, request))
-    # else:
-        Todo.objects.create(name=request.POST['name'], detail=request.POST['detail'], deadline=request.POST['deadline'], priolity=request.POST['priolity'])
-        return render(request, 'todos/create_conf.html')
+    Todo.objects.create(name=request.POST['name'], detail=request.POST['detail'], deadline=request.POST['deadline'], priolity=request.POST['priolity'])
+    return render(request, 'todos/create_conf.html')
 
 # def EndView(request, todo_id):
 #     response = " end"

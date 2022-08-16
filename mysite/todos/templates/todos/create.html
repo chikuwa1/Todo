@@ -27,20 +27,18 @@
             <h2>やるべきことを追加しよう(^▽^)/</h2>
             <p>※「やるべきこと」と「締め切り」は必ず入力してください😎</p>
             <form action="{% url 'todos:create_conf' %}" method="post">
-                <!-- {% csrf_token %}
-            {% if error_messages %}
-            {% for error_messege in error_messeges %}
-            <p>{{ error_message }}</p>
-            {% endfor %}
-            {% endif %} -->
+                {% csrf_token %}
 
                 <fieldset class="create_form">
                     <p>やるべきこと：<input type="text" name='name' size="50" maxlength="50" placeholder="50字以内で入力" required>
+                        <font color="red">(※必ず入力してください)</font>
                     </p>
                     <p>内容・詳細：</p>
                     <p><textarea name="detail" cols="50" rows="4" maxlength="200" placeholder="200字以内で入力"></textarea>
                     </p>
-                    <p>締め切り：<input type="datetime-local" name="deadline" size="50" required></p>
+                    <p>締め切り：<input type="datetime-local" name="deadline" size="50" required>
+                        <font color="red">(※必ず入力してください)</font>
+                    </p>
                     優先度：
                     <select name="priolity" id="priolity" size="1">
                         <option value="5">5</option>

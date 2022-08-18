@@ -11,12 +11,22 @@ body {
     font-family: cursive;
 }
 
+.menu {
+    font-family: "メイリオ";
+    border-bottom: 3px dashed hotpink;
+    width: 400px;
+}
+
 a:link {
-    color: blue;
+    color: mediumvioletred;
 }
 
 a:hover {
     color: darkmagenta;
+}
+
+a:visited {
+    color: blueviolet;
 }
 
 .breadcrumb {
@@ -24,18 +34,26 @@ a:hover {
     background-color: rgb(246, 193, 193);
 }
 
-div {
-    margin: 30px 0px 30px 30px;
-    /*上右下左*/
+.margin_base {
+    margin: 30px 0px 20px 30px;
+}
+
+.margin_second {
+    margin: 0px 0px 0px 30px;
 }
 
 .nearest,
 .priolity {
     font-size: 20px;
+    width: 70%;
 }
 
 .attention {
     font-size: xx-large;
+}
+
+.alert {
+    font-size: x-large;
 }
 
 .sentence {
@@ -43,7 +61,7 @@ div {
 }
 
 .todo {
-    width: 50%;
+    width: 70%;
 }
 
 .todo_detail {
@@ -52,7 +70,7 @@ div {
 
 .priolity_list {
     border-collapse: separate;
-    border-spacing: 5px 10px;
+    border-spacing: 25px 10px;
 
 }
 
@@ -64,4 +82,40 @@ th {
 
 .number {
     font-size: 30px;
+    width: 5%;
+}
+
+.create_form {
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    font-weight: bold;
+    /* 横幅 */
+    max-width: 800px;
+    /* 横幅の最大値 */
+    /* color: #6091d3; */
+    /*文字色*/
+    /* background: #FFF; */
+    border: solid 3px hotpink;
+    /*線*/
+    border-radius: 10px;
+    /*角の丸み*/
+}
+
+.create_form p {
+    margin: 0;
+    padding: 0;
+}
+
+.create_fin {
+    border-collapse: separate;
+    border-spacing: 10px 0px;
+
+}
+
+.big_delete {
+    width: 30%
+}
+
+.image_sorry {
+    margin: 0px 0px 0px 200px;
 }

@@ -22,9 +22,9 @@
         <li><a href="{% url 'todos:create'%}"> ▷ Todoを作成する😉</a></li>
         <li><a href="{% url 'todos:priolity'%}"> ▷ 優先度順リスト👑</a></li>
     </ul>
-    <div>
+    <div class="margin_base">
         <h1 class="menu">⚡Todo削除確認</h1>
-        <div>
+        <div class="margin_base">
             <p class="sentence">一度消去しますと復旧ができません。Todoを削除しますか？</p>
 
 
@@ -37,7 +37,7 @@
             </fieldset>
             <form action="{% url 'todos:delete' todo.id %}" method="post">
                 {% csrf_token %}
-                <input type="submit" class="btn btn-danger btn-sm todo" value="削除">
+                <input type="submit" class="btn btn-danger btn-sm" value="削除">
             </form>
         </div>
 

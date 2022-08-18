@@ -22,22 +22,22 @@
         <li><a href="{% url 'todos:create'%}"> ▷ Todoを作成する😉</a></li>
         <li><a href="{% url 'todos:priolity'%}"> ▷ 優先度順リスト👑</a></li>
     </ul>
-    <div>
+    <div class="margin_base">
         <h1 class="menu">🌞Todo作成完了</h1>
 
-        <table>
+        <table class="create_fin">
             <tr>
                 <td>
                     <div>
-                        <p class="attention">Todoを作成し、リストに追加しました！<br>早速、<font color="red">Todo</font>に取り掛かりましょう！！</p>
-                        <br><br>
+                        <p class="attention">Todoを作成し、リストに追加しました！<br>
+                            早速、<font color="red">Todo</font>に取り掛かりましょう！！</p>
                     </div>
                     <a href="{% url 'todos:index' %}">◁ホームへ移動</a>
                     <p></p>
                     <a href="{% url 'todos:create' %}">◁Todo作成画面へ移動</a>
                 </td>
-                <td>&nbsp;</td>
-                <td><img class="image" src="{% static 'todos/images/rabbit.png' %}" alt="取り掛かりましょう！" width="300">
+                <td>
+                    <img class="image" src="{% static 'todos/images/rabbit.png' %}" alt="取り掛かりましょう！" width="300">
                 </td>
             </tr>
         </table>

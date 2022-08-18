@@ -24,19 +24,20 @@
         <li><a href="{% url 'todos:create'%}"> ▷ Todoを作成する😉</a></li>
         <li><a href="{% url 'todos:priolity'%}"> ▷ 優先度順リスト👑</a></li>
     </ul>
-    <div>
+    <div class="margin_base">
         <h1 class="menu">📝TODO詳細</h1>
-        <div>
+
+        <div class="margin_base">
 
             <h2 class="todo">{{ todo.name }}</h2>
-
             {% if todo.detail == '' %}
-            <p class="sentence">内容・詳細：特になし</p>>
+            <p class="sentence">内容・詳細：特になし</p>
             {% else %}
             <p class="sentence todo">内容・詳細：{{ todo.detail }}</p>
             {% endif %}
             <p class="sentence">締め切り：{{ todo.deadline | date:'Y/m/d H:i' }}</p>
             <p class="sentence">優先度：{{ todo.priolity }}</p>
+
         </div>
 
         <p><a href="{% url 'todos:index' %}">◁ ホームへ移動</a> </p>

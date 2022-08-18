@@ -22,35 +22,38 @@
         <li><a href="{% url 'todos:create'%}"> ▷ Todoを作成する😉</a></li>
         <li><a href="{% url 'todos:priolity'%}"> ▷ 優先度順リスト👑</a></li>
     </ul>
-    <div>
+    <div class="margin_base">
         <h1 class="menu">😉Todo作成</h1>
-        <div>
+        <div class="margin_base">
             <h2>やるべきことを追加しよう(^▽^)/</h2>
             <p>※「やるべきこと」と「締め切り」は必ず入力してください😎</p>
             <form action="{% url 'todos:create_alert' %}" method="post">
                 {% csrf_token %}
 
                 <fieldset class="create_form">
-                    <p>やるべきこと：<input type="text" name='name' size="50" maxlength="50" placeholder="50字以内で入力" required>
-                        <font color="red">(※必須)</font>
-                    </p>
-                    <p class="todo">内容・詳細：</p>
-                    <p><textarea name="detail" cols="50" rows="4" maxlength="200" placeholder="200字以内で入力"></textarea>
-                    </p>
-                    <p>締め切り：<input type="datetime-local" name="deadline" size="50" required>
-                        <font color="red">(※必須 日時は今以降のものにしてください)</font>
-                    </p>
-                    優先度：
-                    <select name="priolity" id="priolity" size="1">
-                        <option value="5">5</option>
-                        <option value="4">4</option>
-                        <option value="3">3</option>
-                        <option value="2">2</option>
-                        <option value="1" selected>1</option>
-                    </select>
+                    <div>
+                        <p>やるべきこと：<input type="text" name='name' size="45" maxlength="50" placeholder="50字以内で入力"
+                                required>
+                            <font color="red">(※必須)</font>
+                        </p>
+                        <p class="todo">内容・詳細：</p>
+                        <p><textarea name="detail" cols="45" rows="4" maxlength="200"
+                                placeholder="200字以内で入力"></textarea>
+                        </p>
+                        <p>締め切り：<input type="datetime-local" name="deadline" size="50" required>
+                            <font color="red">(※必須 日時は今以降のものにしてください)</font>
+                        </p>
+                        優先度：
+                        <select name="priolity" id="priolity" size="1">
+                            <option value="5">5</option>
+                            <option value="4">4</option>
+                            <option value="3">3</option>
+                            <option value="2">2</option>
+                            <option value="1" selected>1</option>
+                        </select>
 
-                    <p><button type="submit" value="追加">追加</button></p>
-
+                        <p><button type="submit" value="追加">追加</button></p>
+                    </div>
                 </fieldset>
             </form>
         </div>

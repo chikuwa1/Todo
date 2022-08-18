@@ -24,23 +24,25 @@
         <li><a href="{% url 'todos:create'%}"> ▷ Todoを作成する😉</a></li>
         <li><a href="{% url 'todos:priolity'%}"> ▷ 優先度順リスト👑</a></li>
     </ul>
-    <div>
+    <div class="margin_base">
         <h1 class="menu">🏡ホーム</h1>
-        <div>
+        <div class="margin_base">
             <h2>締め切りが近い順 Todoリスト🖋</h2>
-            <div>
+            <div class="margin_base">
                 <p class="sentence">Todoが完了したら削除しよう！</p>
                 {% if nearest_todo_list %}
                 <ul>
                     {% for todo in nearest_todo_list %}
                     <li class="nearest"><a href="{% url 'todos:detail' todo.id %}" data-toggle="tooltip"
-                            data-placement="bottom" title="Todoの内容・詳細へ">{{ todo.name }}
-                        </a>
-                        &nbsp;
-                        締切：{{ todo.deadline | date:'Y/m/d H:i' }}</li>
+                            data-placement="bottom" title="Todoの内容・詳細へ" style="display: inline-block;">
+                            {{ todo.name }}
+                        </a></li>
                     <form action="{% url 'todos:delete_alert' todo.id %}" method="post">
                         {% csrf_token %}
-                        <input type="submit" class="btn btn-danger btn-sm" value="削除">
+                        <p class="sentence">締切：{{ todo.deadline | date:'Y/m/d H:i' }} &nbsp;
+                            <input type="submit" class="btn btn-danger btn-sm" value="削除" data-placement="bottom"
+                                title="Todoを削除する">
+                        </p>
                     </form>
                     <p></p>
                     {% endfor %}

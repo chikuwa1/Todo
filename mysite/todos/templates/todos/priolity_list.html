@@ -24,51 +24,52 @@
         <li><a href="{% url 'todos:create'%}"> ▷ Todoを作成する😉</a></li>
         <li><a href="{% url 'todos:priolity'%}"> ▷ 優先度順リスト👑</a></li>
     </ul>
-    <div>
+    <div class="margin_base">
         <h1 class="menu">👑優先度順 Todoリスト</h1>
-        <div>
+        <div class="margin_base">
             <h2>優先度が高いTodoを確認しよう！</h2>
-            <div>
-                <p class="sentence">Todoが完了したら削除しよう！</p>
-                {% if priolity_todo_list == false %}
-                <p class="attention"> 作成されたTodoがありません。<br>新しいTodoを作成しましょう！ </p>
-                {% else %}
-                <ul>
-                    <table class="priolity_list">
-                        <tr>
-                            <th></th>
-                            <th>優先度</th>
-                        </tr>
-                        {% for todo in priolity_todo_list %}
-                        <tr>
-                            <td width="85%">
-                                <li class="priolity"><a href="{% url 'todos:detail' todo.id %}" data-toggle="tooltip"
-                                        data-placement="bottom" title="Todoの内容・詳細へ">{{ todo.name }}
-                                    </a>
-                                    &nbsp;
-                                    締切：{{ todo.deadline | date:'Y/m/d H:i' }}</li>
-                                <form action="{% url 'todos:delete_alert' todo.id %}" method="post">
-                                    {% csrf_token %}
-                                    <input type="submit" class="btn btn-danger btn-sm" value="削除">
-                                </form>
-                            </td>
-                            {% if todo.priolity == 5 %}
-                            <td align="center" bgcolor="tomato" class="number">{{ todo.priolity }}</td>
-                            {% elif todo.priolity == 4 %}
-                            <td align="center" bgcolor="orange" class="number">{{ todo.priolity }}</td>
-                            {% elif todo.priolity == 3 %}
-                            <td align="center" bgcolor="yellow" class="number">{{ todo.priolity }}</td>
-                            {% elif todo.priolity == 2 %}
-                            <td align="center" bgcolor="chartreuse" class="number">{{ todo.priolity }}</td>
-                            {% else %}
-                            <td align="center" bgcolor="cyan" class="number">{{ todo.priolity }}</td>
-                            {% endif %}
-                        </tr>
-                        {% endfor %}
-                    </table>
-                </ul>
-                {% endif %}
-            </div>
+            <p class="sentence margin_base">Todoが完了したら削除しよう！</p>
+            {% if priolity_todo_list == false %}
+            <p class="attention"> 作成されたTodoがありません。<br>新しいTodoを作成しましょう！ </p>
+            {% else %}
+            <ul>
+                <table class="priolity_list">
+                    <tr>
+                        <th>優先度</th>
+                        <th></th>
+                    </tr>
+                    {% for todo in priolity_todo_list %}
+                    <tr>
+                        {% if todo.priolity == 5 %}
+                        <td align="center" bgcolor="tomato" class="number">{{ todo.priolity }}</td>
+                        {% elif todo.priolity == 4 %}
+                        <td align="center" bgcolor="orange" class="number">{{ todo.priolity }}</td>
+                        {% elif todo.priolity == 3 %}
+                        <td align="center" bgcolor="yellow" class="number">{{ todo.priolity }}</td>
+                        {% elif todo.priolity == 2 %}
+                        <td align="center" bgcolor="chartreuse" class="number">{{ todo.priolity }}</td>
+                        {% else %}
+                        <td align="center" bgcolor="cyan" class="number">{{ todo.priolity }}</td>
+                        {% endif %}
+
+                        <td>
+                            <li class="priolity"><a href="{% url 'todos:detail' todo.id %}" data-toggle="tooltip"
+                                    data-placement="bottom" title="Todoの内容・詳細へ" style="display: inline-block;">
+                                    {{ todo.name }}</a>
+                            </li>
+                            <form action="{% url 'todos:delete_alert' todo.id %}" method="post">
+                                {% csrf_token %}
+                                <p class="sentence">締切：{{ todo.deadline | date:'Y/m/d H:i' }}&nbsp;<input type="submit"
+                                        class="btn btn-danger btn-sm" value="削除" data-placement="bottom"
+                                        title="Todoを削除する"></p>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </ul>
+            {% endif %}
+
         </div>
     </div>
 </body>

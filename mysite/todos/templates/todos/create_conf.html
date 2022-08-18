@@ -3,12 +3,41 @@
 
 <head>
     <meta charset="utf-8">
+    {% load static %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'todos/style.css' %}">
     <title>TODO作成完了</title>
 </head>
 
 <body>
-    <h1>Todo作成完了</h1>
-    <p>Todoを作成し、リストに追加しました！</p>
+    <h1 class="title">TODOリスト</h1>
+    <ul class="breadcrumb">
+        Menu：
+        <li><a href="{% url 'todos:index'%}">▷ ホーム🏡</a></li>
+        <li><a href="{% url 'todos:create'%}"> ▷ Todoを追加する😉</a></li>
+    </ul>
+    <div>
+        <h1>Todo作成完了</h1>
 
-    <a href="{% url 'todos:index' %}">◁ホームへ</a>
+        <table>
+            <tr>
+                <td>
+                    <div>
+                        <h2>Todoを作成し、リストに追加しました！<br>早速、<font color="red">Todo</font>に取り掛かりましょう！！</h2>
+                        <br><br>
+                    </div>
+                    <a href="{% url 'todos:index' %}">◁ホームへ移動</a>
+                    <p></p>
+                    <a href="{% url 'todos:create' %}">◁Todo作成画面へ移動</a>
+                </td>
+                <td>&nbsp;</td>
+                <td><img class="image" src="{% static 'todos/images/rabbit2.png' %}" alt="取り掛かりましょう！" width="300">
+                </td>
+            </tr>
+        </table>
+
+    </div>
 </body>

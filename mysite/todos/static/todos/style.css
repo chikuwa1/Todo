@@ -33,7 +33,11 @@ div {
     font-size: 20px;
 }
 
+.attention {
+    font-size: xx-large;
+}
 
-h4 {
+.sentence {
+    font-size: large;
     width: 400px;
 }

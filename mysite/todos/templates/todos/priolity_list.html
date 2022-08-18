@@ -1,0 +1,76 @@
+<!--優先度順のリストを表示する画面-->
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    {% load static %}
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'todos/style.css' %}">
+
+    <title>TODOリスト</title>
+</head>
+
+<body>
+    <h1 class="title">TODOリスト</h1>
+
+    <ul class="breadcrumb">
+        Menu：
+        <li><a href="{% url 'todos:index'%}">▷ ホーム🏡</a></li>
+        <li><a href="{% url 'todos:create'%}"> ▷ Todoを作成する😉</a></li>
+        <li><a href="{% url 'todos:priolity'%}"> ▷ 優先度順リスト👑</a></li>
+    </ul>
+    <div>
+        <h1 class="menu">優先度順 Todoリスト</h1>
+        <div>
+            <h2>優先度が高いTodoを確認しよう！</h2>
+            <div>
+                <p class="sentence">Todoが完了したら削除しよう！</p>
+                {% if priolity_todo_list == false %}
+                <p class="attention"> 作成されたTodoがありません。<br>新しいTodoを作成しましょう！ </p>
+                {% else %}
+                <ul>
+                    <table class="priolity">
+                        <tr>
+                            <th></th>
+                            <th>優先度</th>
+                        </tr>
+                        {% for todo in priolity_todo_list %}
+                        <tr>
+                            <td width="85%">
+                                <li class="priolity"><a href="{% url 'todos:detail' todo.id %}" data-toggle="tooltip"
+                                        data-placement="bottom" title="Todoの内容・詳細へ">{{ todo.name }}
+                                    </a>
+                                    &nbsp;
+                                    締切：{{ todo.deadline | date:'Y/m/d H:i' }}</li>
+                                <form action="{% url 'todos:delete_alert' todo.id %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="submit" class="btn btn-danger btn-sm" value="削除">
+                                </form>
+                            </td>
+                            {% if todo.priolity == 5 %}
+                            <td align="center" bgcolor="red">{{ todo.priolity }}</td>
+                            {% elif todo.priolity == 4 %}
+                            <td align="center" bgcolor="orange">{{ todo.priolity }}</td>
+                            {% elif todo.priolity == 3 %}
+                            <td align="center" bgcolor="yellow">{{ todo.priolity }}</td>
+                            {% elif todo.priolity == 2 %}
+                            <td align="center" bgcolor="chartreuse">{{ todo.priolity }}</td>
+                            {% else %}
+                            <td align="center" bgcolor="cyan">{{ todo.priolity }}</td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

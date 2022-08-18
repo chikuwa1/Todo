@@ -14,6 +14,7 @@ urlpatterns = [
     path('<int:todo_id>/delete/', views.delete, name='delete'),
     path('', views.IndexView.as_view(), name='index'),
     path('<int:pk>/detail/', views.DetailView.as_view(), name='detail'),
+    path('priolity_list/', views.priolityList, name='priolity'),
     # path('create/', views.CreateView.as_view(), name='create'),
     # path('<int:task_id>/completion/', views.CompleteView.as_view(),name='completion'),
     # path('end/', views.EndView.as_view(), name='end'),

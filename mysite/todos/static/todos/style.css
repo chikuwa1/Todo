@@ -29,7 +29,8 @@ div {
     /*上右下左*/
 }
 
-.nearest {
+.nearest,
+.priolity {
     font-size: 20px;
 }
 
@@ -47,4 +48,14 @@ div {
 
 .todo_detail {
     margin: 30px 0px 30px 30px;
+}
+
+.priolity {
+    border-collapse: separate;
+    border-spacing: 5px 10px;
+}
+
+th {
+    font-size: 15px;
+    height: 15px;
 }

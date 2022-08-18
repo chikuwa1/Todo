@@ -4,8 +4,9 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
 from django.views import generic
 from .models import Todo
-from django.utils import timezone
 
+from django.utils import timezone
+from itertools import chain
 import datetime
 
 # 締め切り順にTodoリストを表示する機能
@@ -23,6 +24,27 @@ class IndexView(generic.ListView):
     
     def get_queryset(self):
         return Todo.objects.order_by('deadline')
+
+def priolityList(request):
+    priolity5_todo_list = Todo.objects.filter(priolity=5).order_by('deadline')
+    priolity4_todo_list = Todo.objects.filter(priolity=4).order_by('deadline')
+    priolity3_todo_list = Todo.objects.filter(priolity=3).order_by('deadline')
+    priolity2_todo_list = Todo.objects.filter(priolity=2).order_by('deadline')
+    priolity1_todo_list = Todo.objects.filter(priolity=1).order_by('deadline')
+
+    priolity_todo_list =list(chain(
+        priolity5_todo_list,
+        priolity4_todo_list,
+        priolity3_todo_list,
+        priolity2_todo_list,
+        priolity1_todo_list
+    ))
+    template = loader.get_template('todos/priolity_list.html')
+    context = {
+        'priolity_todo_list': priolity_todo_list,
+    }
+    return HttpResponse(template.render(context, request))
+
 
 # #Todoの詳細を表示する機能
 # def detail(request, todo_id):

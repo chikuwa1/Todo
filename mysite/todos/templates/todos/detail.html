@@ -25,14 +25,15 @@
     </ul>
     <div>
         <h2>TODOの詳細</h2>
-
         <div>
 
             <h2>{{ todo.name }}</h2>
 
-
+            {% if todo.detail == '' %}
+            <h4>内容・詳細：特になし</h4>
+            {% else %}
             <h4>内容・詳細：{{ todo.detail }}</h4>
-
+            {% endif %}
             <h4>締め切り：{{ todo.deadline | date:'Y/m/d H:i' }}</h4>
             <h4>優先度：{{ todo.priolity }}</h4>
         </div>

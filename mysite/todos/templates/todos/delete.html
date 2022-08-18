@@ -1,17 +1,32 @@
+<!--Todoの削除完了画面-->
 <!DOCTYPE html>
 <html lang="ja">
 
 <head>
     <meta charset="utf-8">
-    <title>Todoの完了・削除</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'todos/style.css' %}">
+    <title>Todoの削除</title>
 </head>
 
 <body>
-    <h1>Todo完了・削除画面</h1>
-    <p>削除しました！
-        Todo完了ご苦労様です！</p>
-
-    <p> <a href="{% url 'todos:index' %}">◁ ホームへ</a> </p>
+    <h1 class="title">TODOリスト</h1>
+    <ul class="breadcrumb">
+        Menu：
+        <li><a href="{% url 'todos:index'%}">▷ ホーム🏡</a></li>
+        <li><a href="{% url 'todos:create'%}"> ▷ Todoを作成する😉</a></li>
+    </ul>
+    <div>
+        <h1 class="menu">✅Todo削除完了</h1>
+        <div>
+            <p class="attention">削除しました！<br>Todo完了ご苦労様です！</p>
+        </div>
+        <p> <a href="{% url 'todos:index' %}">◁ ホームへ移動</a> </p>
+    </div>
 </body>
 
 </html>

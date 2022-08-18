@@ -1,4 +1,4 @@
-<!--Todo作成時、日時が今より前だった場合のエラー文表示-->
+<!--Todo作成時、日時が今より前だった場合のエラー画面-->
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -19,18 +19,18 @@
     <ul class="breadcrumb">
         Menu：
         <li><a href="{% url 'todos:index'%}">▷ ホーム🏡</a></li>
-        <li><a href="{% url 'todos:create'%}"> ▷ Todoを追加する😉</a></li>
+        <li><a href="{% url 'todos:create'%}"> ▷ Todoを作成する😉</a></li>
     </ul>
     <div>
-        <h1>Todo作成エラー</h1>
+        <h1 class="menu">❌Todo作成エラー</h1>
         <div class="time_error">
-            <h3>入力した「締め切り」が今より前の日時です。<br>申し訳ございませんが、最初から入力し直してください。</h3>
+            <p class="attention">入力した「締め切り」が今より前の日時です。<br>申し訳ございませんが、最初から入力し直してください。</p>
             <img class="image" src="{% static 'todos/images/sorry2.png' %}" alt="ごめんなさい" width="250">
         </div>
 
 
-        <a href="{% url 'todos:create' %}">◁Todo作成画面へ移動</a>
+        <a href="{% url 'todos:create' %}">◁ Todo作成画面へ移動</a>
         <p></p>
-        <a href="{% url 'todos:index' %}">◁ホームへ移動</a>
+        <a href="{% url 'todos:index' %}">◁ ホームへ移動</a>
     </div>
 </body>

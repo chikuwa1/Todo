@@ -21,14 +21,14 @@
     <ul class="breadcrumb">
         Menu：
         <li><a href="{% url 'todos:index'%}">▷ ホーム🏡</a></li>
-        <li><a href="{% url 'todos:create'%}"> ▷ Todoを追加する😉</a></li>
+        <li><a href="{% url 'todos:create'%}"> ▷ Todoを作成する😉</a></li>
     </ul>
     <div>
-        <h1>ホーム</h1>
+        <h1 class="menu">🏡ホーム</h1>
         <div>
-            <h2>締め切りが近い順 Todoリスト</h2>
+            <h2>締め切りが近い順 Todoリスト🖋</h2>
             <div>
-                <h4>Todoが完了したら削除しよう！</h4>
+                <p class="sentence">Todoが完了したら削除しよう！</p>
                 {% if nearest_todo_list %}
                 <ul>
                     {% for todo in nearest_todo_list %}
@@ -53,6 +53,3 @@
 </body>
 
 </html>
-
-
-<!--以降に優先度順のリストを表示するurlを表示するように設定する-->

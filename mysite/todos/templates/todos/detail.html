@@ -1,4 +1,4 @@
-<!--Todoの詳細を表示-->
+<!--Todoの詳細表示画面-->
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -21,24 +21,24 @@
     <ul class="breadcrumb">
         Menu：
         <li><a href="{% url 'todos:index'%}">▷ ホーム🏡</a></li>
-        <li><a href="{% url 'todos:create'%}"> ▷ Todoを追加する😉</a></li>
+        <li><a href="{% url 'todos:create'%}"> ▷ Todoを作成する😉</a></li>
     </ul>
     <div>
-        <h2>TODOの詳細</h2>
+        <h1 class="menu">📝TODO詳細</h1>
         <div>
 
             <h2>{{ todo.name }}</h2>
 
             {% if todo.detail == '' %}
-            <h4>内容・詳細：特になし</h4>
+            <p class="sentence">内容・詳細：特になし</p>>
             {% else %}
-            <h4>内容・詳細：{{ todo.detail }}</h4>
+            <p class="sentence">内容・詳細：{{ todo.detail }}</p>
             {% endif %}
-            <h4>締め切り：{{ todo.deadline | date:'Y/m/d H:i' }}</h4>
-            <h4>優先度：{{ todo.priolity }}</h4>
+            <p class="sentence">締め切り：{{ todo.deadline | date:'Y/m/d H:i' }}</p>
+            <p class="sentence">優先度：{{ todo.priolity }}</p>
         </div>
 
-        <p><a href="{% url 'todos:index' %}">◁ ホームへ</a> </p>
+        <p><a href="{% url 'todos:index' %}">◁ ホームへ移動</a> </p>
     </div>
 </body>
 

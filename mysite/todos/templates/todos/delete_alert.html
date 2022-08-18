@@ -24,15 +24,15 @@
     <div>
         <h1 class="menu">⚡Todo削除確認</h1>
         <div>
-            <p>一度消去しますと復旧ができません。Todoを削除しますか？</p>
+            <p class="sentence">一度消去しますと復旧ができません。Todoを削除しますか？</p>
 
 
             <fieldset>
-                <h3>削除するTodo</h3>
-                <p>やるべきこと：{{ todo.name }}</p>
-                <p>内容・詳細：{{ todo.detail }}</p>
-                <p>締め切り：{{ todo.deadline | date:'Y/m/d H:i' }}</p>
-                <p>優先度：{{ todo.priolity }}</p>
+                <h2>削除するTodo</h2>
+                <p class="sentence todo">やるべきこと：{{ todo.name }}</p>
+                <p class="sentence todo">内容・詳細：{{ todo.detail }}</p>
+                <p class="sentence todo">締め切り：{{ todo.deadline | date:'Y/m/d H:i' }}</p>
+                <p class="sentence todo">優先度：{{ todo.priolity }}</p>
                 <form action="{% url 'todos:delete' todo.id %}" method="post">
                     {% csrf_token %}
                     <input type="submit" value="削除">

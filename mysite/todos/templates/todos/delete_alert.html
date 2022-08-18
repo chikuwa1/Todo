@@ -27,17 +27,17 @@
             <p class="sentence">一度消去しますと復旧ができません。Todoを削除しますか？</p>
 
 
-            <fieldset>
-                <h2>削除するTodo</h2>
+            <h2>削除するTodo</h2>
+            <fieldset class='todo_detail'>
                 <p class="sentence todo">やるべきこと：{{ todo.name }}</p>
                 <p class="sentence todo">内容・詳細：{{ todo.detail }}</p>
-                <p class="sentence todo">締め切り：{{ todo.deadline | date:'Y/m/d H:i' }}</p>
-                <p class="sentence todo">優先度：{{ todo.priolity }}</p>
-                <form action="{% url 'todos:delete' todo.id %}" method="post">
-                    {% csrf_token %}
-                    <input type="submit" value="削除">
-                </form>
+                <p class="sentence">締め切り：{{ todo.deadline | date:'Y/m/d H:i' }}</p>
+                <p class="sentence">優先度：{{ todo.priolity }}</p>
             </fieldset>
+            <form action="{% url 'todos:delete' todo.id %}" method="post">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-danger btn-sm todo" value="削除">
+            </form>
         </div>
 
         <p> <a href="{% url 'todos:index' %}">◁ ホームへ移動</a> </p>

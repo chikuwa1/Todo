@@ -1,15 +1,37 @@
+<!--Todo作成時、日時が今より前だった場合のエラー文表示-->
+
 <!DOCTYPE html>
 <html lang="ja">
 
 <head>
     <meta charset="utf-8">
-    <title>TODO作成失敗</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'todos/style.css' %}">
+    <title>Todo作成エラー</title>
 </head>
 
 <body>
-    <h1>Todo作成失敗</h1>
-    <h2>入力した「締め切り」が今より前の日時です。最初から入力しなおしてください。</h2>
+    <h1 class="title">TODOリスト</h1>
+    <ul class="breadcrumb">
+        Menu：
+        <li><a href="{% url 'todos:index'%}">▷ ホーム🏡</a></li>
+        <li><a href="{% url 'todos:create'%}"> ▷ Todoを追加する😉</a></li>
+    </ul>
+    <div>
+        <h1>Todo作成エラー</h1>
+        <div class="time_error">
+            <h3>入力した「締め切り」が今より前の日時です。<br>申し訳ございませんが、最初から入力し直してください。</h3>
+            {% load static %}
+            <img class="image" src="{% static 'todos/images/sorry2.png' %}" alt="ごめんなさい" width="250">
+        </div>
 
 
-    <a href="{% url 'todos:index' %}">◁ホームへ戻る</a>
+        <a href="{% url 'todos:create' %}">◁Todo作成画面へ移動</a>
+        <p></p>
+        <a href="{% url 'todos:index' %}">◁ホームへ移動</a>
+    </div>
 </body>

@@ -43,10 +43,16 @@ a:visited {
 }
 
 .nearest,
-.priolity {
+.priolity,
+.over {
     font-size: 20px;
     width: 70%;
 }
+
+.over_todo_name {
+    background-color: yellow;
+}
+
 
 .attention {
     font-size: xx-large;
@@ -92,9 +98,6 @@ th {
     /* 横幅 */
     max-width: 800px;
     /* 横幅の最大値 */
-    /* color: #6091d3; */
-    /*文字色*/
-    /* background: #FFF; */
     border: solid 3px hotpink;
     /*線*/
     border-radius: 10px;

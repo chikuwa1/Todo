@@ -12,20 +12,23 @@ import datetime
 flag = False
 
 # 締め切り順にTodoリストを表示する機能
-# def index(request):
-#     nearest_todo_list = Todo.objects.order_by('deadline')[:5]
-#     template = loader.get_template('todos/index.html')
-#     context = {
-#         'nearest_todo_list': nearest_todo_list
-#     }
-#     return HttpResponse(template.render(context, request))
+def index(request):
+    today = datetime.datetime.now()
+    over_todo_list = Todo.objects.filter(deadline__lte = today).order_by('deadline')
+    nearest_todo_list = Todo.objects.filter(deadline__gt = today).order_by('deadline')
+    template = loader.get_template('todos/index.html')
+    context = {
+        'nearest_todo_list': nearest_todo_list,
+        'over_todo_list': over_todo_list,
+    }
+    return HttpResponse(template.render(context, request))
 
-class IndexView(generic.ListView):
-    template_name = 'todos/index.html'
-    context_object_name = 'nearest_todo_list'
+# class IndexView(generic.ListView):
+#     template_name = 'todos/index.html'
+#     context_object_name = 'nearest_todo_list'
     
-    def get_queryset(self):
-        return Todo.objects.order_by('deadline')
+#     def get_queryset(self):
+#         return Todo.objects.order_by('deadline')
 
 def priolityList(request):
     priolity5_todo_list = Todo.objects.filter(priolity=5).order_by('deadline')

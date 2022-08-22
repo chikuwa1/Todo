@@ -31,6 +31,43 @@
             <div class="margin_base">
                 <p class="sentence">Todoが完了したら削除しよう！</p>
                 {% if nearest_todo_list %}
+                {% if over_todo_list %}
+                <ul>
+
+                    {% for todo in over_todo_list %}
+                    <li class="over"><a href="{% url 'todos:detail' todo.id %}" data-toggle="tooltip"
+                            data-placement="bottom" title="Todoの内容・詳細へ" style="display: inline-block;">
+                            <span class="over_todo_name"> {{ todo.name }}</span>
+                        </a>&emsp;
+                        <font color="red">(⚠ 締め切りを過ぎています!!)</font>
+                    </li>
+                    <form action="{% url 'todos:delete_alert' todo.id %}" method="post">
+                        {% csrf_token %}
+                        <p class="sentence">
+                            締切：{{ todo.deadline | date:'Y/m/d H:i' }}&nbsp;
+                            <input type="submit" class="btn btn-danger btn-sm" value="削除" data-placement="bottom"
+                                title="Todoを削除する">
+                        </p>
+                    </form>
+                    <p></p>
+                    {% endfor %}
+
+                    {% for todo in nearest_todo_list %}
+                    <li class="nearest"><a href="{% url 'todos:detail' todo.id %}" data-toggle="tooltip"
+                            data-placement="bottom" title="Todoの内容・詳細へ" style="display: inline-block;">
+                            {{ todo.name }}
+                        </a></li>
+                    <form action="{% url 'todos:delete_alert' todo.id %}" method="post">
+                        {% csrf_token %}
+                        <p class="sentence">締切：{{ todo.deadline | date:'Y/m/d H:i' }} &nbsp;
+                            <input type="submit" class="btn btn-danger btn-sm" value="削除" data-placement="bottom"
+                                title="Todoを削除する">
+                        </p>
+                    </form>
+                    <p></p>
+                    {% endfor %}
+                </ul>
+                {% else %}
                 <ul>
                     {% for todo in nearest_todo_list %}
                     <li class="nearest"><a href="{% url 'todos:detail' todo.id %}" data-toggle="tooltip"
@@ -47,6 +84,7 @@
                     <p></p>
                     {% endfor %}
                 </ul>
+                {% endif %}
                 {% else %}
                 <p class="attention"> 作成されたTodoがありません。<br>新しいTodoを作成しましょう！ </p>
                 {% endif %}

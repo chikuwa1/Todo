@@ -5,12 +5,14 @@ from .models import Todo
 from itertools import chain
 import datetime
 
-flag = False #Todo作成時リロードを管理するグローバル変数
+#Todo作成時リロードを管理するグローバル変数
+flag = False 
 
 # 締め切り順にTodoリストを表示する機能とホーム画面
 def index(request):
     try:
-        today = datetime.datetime.now()
+        DIFF_JST_FROM_UTC = 9 #日本時間に調整するため
+        today = datetime.datetime.now() + datetime.timedelta(hours=DIFF_JST_FROM_UTC)
         over_todo_list = Todo.objects.filter(deadline__lte = today).order_by('deadline')
         nearest_todo_list = Todo.objects.filter(deadline__gt = today).order_by('deadline')
         context = {
@@ -42,7 +44,7 @@ def priolityList(request):
         context = {
             'priolity_todo_list': priolity_todo_list,
         }
-        return HttpResponse(template.render(context, request))
+        return render(request, 'todos/priolity_list.html', context)
 
     except:
         return render(request,'todos/error.html')

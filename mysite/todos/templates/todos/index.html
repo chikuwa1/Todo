@@ -43,8 +43,7 @@
                     </li>
                     <form action="{% url 'todos:delete_alert' todo.id %}" method="post">
                         {% csrf_token %}
-                        <p class="sentence">
-                            締切：{{ todo.deadline | date:'Y/m/d H:i' }}&nbsp;
+                        <p class="sentence">締切：{{ todo.deadline | date:'Y/m/d H:i' }} &nbsp;
                             <input type="submit" class="btn btn-danger btn-sm" value="削除" data-placement="bottom"
                                 title="Todoを削除する">
                         </p>

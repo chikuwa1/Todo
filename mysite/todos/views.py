@@ -9,6 +9,8 @@ from django.utils import timezone
 from itertools import chain
 import datetime
 
+flag = False
+
 # 締め切り順にTodoリストを表示する機能
 # def index(request):
 #     nearest_todo_list = Todo.objects.order_by('deadline')[:5]
@@ -61,35 +63,24 @@ class DetailView(generic.DetailView):
 #     return render(request, 'todos/create.html')
 
 def create(request):
+    global flag
+    flag = True
     return render(request, 'todos/create.html')
 
-
-# Todoを終了した際の表示 #これいらない、削除
-def complete(request,todo_id):
-    return HttpResponse('completed!')
-# def CompleteView(request, todo_id):
-#     response = "Congratulation! You did todo %s!"
-#     return HttpResponse(response % todo_id)
-
 def createConf(request):
-    today = datetime.datetime.now()
-    # now = timezone.now()
+    global flag
+    today = datetime.datetime.now()    
     deadline = datetime.datetime.strptime(request.POST['deadline'], '%Y-%m-%dT%H:%M')
-    # if  deadline <= today:
-    #     return render(request, 'todos/create_alert.html')
-    
-    # else :
-    #     Todo.objects.create(name=request.POST['name'], detail=request.POST['detail'], deadline=request.POST['deadline'], priolity=request.POST['priolity'])
-    #     return render(request, 'todos/create_conf.html') 
-
-    # if is_past_deadline(deadline):
-
     if deadline < today:
-        return render(request, 'todos/create_alert.html')
+        return render(request, 'todos/create_time_error.html')
     
     else :
-        Todo.objects.create(name=request.POST['name'], detail=request.POST['detail'], deadline=request.POST['deadline'], priolity=request.POST['priolity'])
-        return render(request, 'todos/create_conf.html') 
+        if flag:
+            Todo.objects.create(name=request.POST['name'], detail=request.POST['detail'], deadline=request.POST['deadline'], priolity=request.POST['priolity'])
+            flag = False
+            return render(request, 'todos/create_completion.html') 
+        else:
+            return render(request, 'todos/create.html')
 
 
 
@@ -107,7 +98,7 @@ def delete(request, todo_id):
     todo = get_object_or_404(Todo, pk=todo_id)
     if request.POST:
         todo.delete()
-    return render(request, 'todos/delete.html', {"todo": todo})
+    return render(request, 'todos/delete_completion.html', {"todo": todo})
 
 # class DeleteView(generic.DeleteView):
 #     model = Todo

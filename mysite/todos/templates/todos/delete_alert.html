@@ -35,7 +35,7 @@
                 <p class="sentence">締め切り：{{ todo.deadline | date:'Y/m/d H:i' }}</p>
                 <p class="sentence">優先度：{{ todo.priolity }}</p>
             </fieldset>
-            <form action="{% url 'todos:delete' todo.id %}" method="post">
+            <form action="{% url 'todos:delete_completion' todo.id %}" method="post">
                 {% csrf_token %}
                 <input type="submit" class="btn btn-danger btn-sm" value="削除">
             </form>

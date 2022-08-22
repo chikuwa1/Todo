@@ -27,7 +27,7 @@
         <div class="margin_base">
             <h2>やるべきことを追加しよう(^▽^)/</h2>
             <p>※「やるべきこと」と「締め切り」は必ず入力してください😎</p>
-            <form action="{% url 'todos:create_alert' %}" method="post">
+            <form action="{% url 'todos:time_error' %}" method="post">
                 {% csrf_token %}
 
                 <fieldset class="create_form">
@@ -52,7 +52,7 @@
                             <option value="1" selected>1</option>
                         </select>
 
-                        <p><button type="submit" value="追加">追加</button></p>
+                        <p><button type="submit" name="" value="作成">作成</button></p>
                     </div>
                 </fieldset>
             </form>

@@ -1,0 +1,33 @@
+<!--予期せぬエラーが起きた場合に表示する画面-->
+
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    {% load static %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'todos/style.css' %}">
+    <title>Todo作成エラー</title>
+</head>
+
+<body>
+    <h1 class="title">TODOリスト</h1>
+    <ul class="breadcrumb">
+        Menu：
+        <li><a href="{% url 'todos:index'%}">▷ ホーム🏡</a></li>
+        <li><a href="{% url 'todos:create'%}"> ▷ Todoを作成する😉</a></li>
+        <li><a href="{% url 'todos:priolity'%}"> ▷ 優先度順リスト👑</a></li>
+    </ul>
+    <div class="margin_base">
+        <h1 class="menu">❌予期せぬエラー</h1>
+
+        <p class="alert margin_second">予期せぬエラーが起きました。<br>申し訳ございませんが、一度ホームへお戻りください。</p>
+        <img class="image_sorry" src="{% static 'todos/images/sorry2.png' %}" alt="ごめんなさい" width="300">
+        <p></p>
+        <a href="{% url 'todos:index' %}">◁ ホームへ移動</a>
+    </div>
+</body>

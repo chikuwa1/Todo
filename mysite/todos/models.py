@@ -11,14 +11,11 @@ PRIOLITY_COICES = (
 )
 
 class Todo(models.Model):
-    name = models.CharField(max_length=50)
-    detail = models.CharField(max_length=200)
-    deadline = models.DateTimeField('締め切り')
-    priolity = models.IntegerField(choices = PRIOLITY_COICES, default = 3)
+    name = models.CharField(max_length=50) #やるべきこと
+    detail = models.CharField(max_length=200) #内容・詳細
+    deadline = models.DateTimeField('締め切り') #締め切り
+    priolity = models.IntegerField(choices = PRIOLITY_COICES, default = 3) #優先順位
     
     def __str__(self):
         return self.name
     
-    # @property
-    # def is_past_deadline(self):
-    #     return datetime.datetime.now() > self.deadline

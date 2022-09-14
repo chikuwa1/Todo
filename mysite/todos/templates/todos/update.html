@@ -1,9 +1,10 @@
-<!--Todoの削除確認画面-->
+<!--Todoの編集完了画面-->
 
 <!DOCTYPE html>
 <html lang="ja">
 
 <head>
+
     <meta charset="utf-8">
     {% load static %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -11,7 +12,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="{% static 'todos/style.css' %}">
-    <title>Todo削除の確認</title>
+
+    <title>TODOの変更完了</title>
 </head>
 
 <body>
@@ -24,25 +26,22 @@
         <li><a href="{% url 'todos:detail_list'%}"> ▷ 詳細一覧📜</a></li>
     </ul>
     <div class="margin_base">
-        <h1 class="menu">⚡Todo削除確認</h1>
+        <h1 class="menu">📝TODO変更完了</h1>
+
         <div class="margin_base">
-            <p class="sentence">一度消去しますと復旧ができません。Todoを削除しますか？</p>
+            <p>以下のように変更しました。</p>
+            <h2 class="todo">{{ todo.name }}</h2>
+            {% if todo.detail == '' %}
+            <p class="sentence bold">内容・詳細：特になし</p>
+            {% else %}
+            <p class="sentence todo bold">内容・詳細：{{ todo.detail }}</p>
+            {% endif %}
+            <p class="sentence bold">締め切り：{{ todo.deadline | date:'Y/m/d H:i' }}</p>
+            <p class="sentence bold">優先度：{{ todo.priolity }}</p>
 
-
-            <h2>削除するTodo</h2>
-            <fieldset class='todo_detail'>
-                <p class="sentence todo bold">やるべきこと：{{ todo.name }}</p>
-                <p class="sentence todo bold">内容・詳細：{{ todo.detail }}</p>
-                <p class="sentence bold">締め切り：{{ todo.deadline | date:'Y/m/d H:i' }}</p>
-                <p class="sentence bold">優先度：{{ todo.priolity }}</p>
-            </fieldset>
-            <form action="{% url 'todos:delete_completion' todo.id %}" method="post">
-                {% csrf_token %}
-                <input type="submit" class="btn btn-sm" value="削除">
-            </form>
         </div>
 
-        <p> <a href="{% url 'todos:index' %}">◁ ホームへ移動</a> </p>
+        <p><a href="{% url 'todos:index' %}">◁ ホームへ移動</a> </p>
     </div>
 </body>
 

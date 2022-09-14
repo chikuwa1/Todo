@@ -59,6 +59,17 @@ def detail(request, todo_id):
     except:
         return render(request,'todos/error.html')
 
+#Todoの詳細を表示する機能
+def detailList(request):
+    try:
+        nearest_todo_list = Todo.objects.order_by('deadline')
+        context = {
+            'nearest_todo_list': nearest_todo_list
+        }
+        return render(request, 'todos/detail_list.html', context)
+    except:
+        return render(request,'todos/error.html')
+
 
 #Todoを新しく作成するフォームを表示する機能
 def create(request):
@@ -90,7 +101,7 @@ def createCompletion(request):
     except:
         return render(request,'todos/error.html')
 
-#Todoを削除する際の確認そ表示する機能
+#Todoを削除する際の確認を表示する機能
 def deleteAlert(request, todo_id):
     try:
         todo = get_object_or_404(Todo, pk=todo_id)
@@ -109,3 +120,21 @@ def delete(request, todo_id):
     except:
         return render(request,'todos/error.html')
 
+#Todoを編集する機能
+def edit(request, todo_id):
+    try:
+        todo = Todo.objects.get(pk=todo_id)
+        if request.method == "POST":
+            todo.name = request.POST["name"]
+            todo.detail = request.POST["detail"]
+            todo.deadline = datetime.datetime.strptime(request.POST['deadline'], '%Y-%m-%dT%H:%M')
+            todo.priolity = request.POST["priolity"]
+            todo.save()
+            return render(request, 'todos/update.html', {'todo': todo})
+        content = {"todo": todo}
+        return render(request,'todos/edit.html', content)
+    
+    except:
+        return render(request,'todos/error.html')
+
+    

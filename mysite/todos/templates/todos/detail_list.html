@@ -26,10 +26,11 @@
         <li><a href="{% url 'todos:detail_list'%}"> ▷ 詳細一覧📜</a></li>
     </ul>
     <div class="margin_base">
-        <h1 class="menu">📝TODO詳細</h1>
+        <h1 class="menu">📜TODO詳細一覧</h1>
 
         <div class="margin_base">
-
+            {% if nearest_todo_list %}
+            {% for todo in nearest_todo_list %}
             <h2 class="todo">{{ todo.name }}</h2>
             {% if todo.detail == '' %}
             <p class="sentence bold">内容・詳細：特になし</p>
@@ -41,6 +42,11 @@
 
             <a href="{% url 'todos:delete_alert' todo.id %}" class="del-button" title="Todoを削除する">削除</a>
             <a href="{% url 'todos:edit' todo.id %}" class="edit-button" title="Todoを編集する">編集</a>
+            <hr>
+            {% endfor %}
+            {% else %}
+            <p class="attention"> 作成されたTodoがありません。<br>新しいTodoを作成しましょう！ </p>
+            {% endif %}
         </div>
 
         <p><a href="{% url 'todos:index' %}">◁ ホームへ移動</a> </p>

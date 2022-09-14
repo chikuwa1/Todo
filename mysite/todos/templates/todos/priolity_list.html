@@ -23,6 +23,7 @@
         <li><a href="{% url 'todos:index'%}">▷ ホーム🏡</a></li>
         <li><a href="{% url 'todos:create'%}"> ▷ Todoを作成する😉</a></li>
         <li><a href="{% url 'todos:priolity'%}"> ▷ 優先度順リスト👑</a></li>
+        <li><a href="{% url 'todos:detail_list'%}"> ▷ 詳細一覧📜</a></li>
     </ul>
     <div class="margin_base">
         <h1 class="menu">👑優先度順 Todoリスト</h1>
@@ -59,9 +60,10 @@
                             </li>
                             <form action="{% url 'todos:delete_alert' todo.id %}" method="post">
                                 {% csrf_token %}
-                                <p class="sentence">締切：{{ todo.deadline | date:'Y/m/d H:i' }}&nbsp;<input type="submit"
-                                        class="btn btn-danger btn-sm" value="削除" data-placement="bottom"
-                                        title="Todoを削除する"></p>
+                                <p class="sentence">締切：{{ todo.deadline | date:'Y/m/d H:i' }}&nbsp;
+                                    
+                                    <a href="{% url 'todos:delete_alert' todo.id %}" class="del-button" title="Todoを削除する">削除</a>
+                                    <a href="{% url 'todos:edit' todo.id %}" class="edit-button" title="Todoを編集する">編集</a>
                             </form>
                         </td>
                     </tr>

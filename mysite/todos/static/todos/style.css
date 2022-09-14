@@ -34,6 +34,9 @@ a:visited {
     background-color: rgb(246, 193, 193);
 }
 
+p{
+    font-size: 20px;
+}
 .margin_base {
     margin: 30px 0px 20px 30px;
 }
@@ -41,6 +44,37 @@ a:visited {
 .margin_second {
     margin: 0px 0px 0px 30px;
 }
+
+
+.del-button,
+.btn {
+    font-size: 13px;
+    display: inline-block;
+    padding: 7px 15px;
+    text-decoration: none;
+    background:orangered;
+    color:white;
+    border-radius: 5px;
+}
+.edit-button {
+    font-size: 13px;
+    display: inline-block;
+    padding: 7px 15px;
+    text-decoration: none;
+    background:mediumturquoise;
+    color:white;
+    border-radius: 5px;
+}
+
+.del-button:link,
+.del-button:hover,
+.del-button:visited,
+.edit-button:link,
+.edit-button:hover,
+.edit-button:visited {
+    color:white;
+}
+
 
 .nearest,
 .priolity,
@@ -66,6 +100,9 @@ a:visited {
     font-size: large;
 }
 
+.bold{
+    font-weight:bold;
+}
 .todo {
     width: 70%;
 }
@@ -91,12 +128,13 @@ th {
     width: 5%;
 }
 
-.create_form {
+.create_form,
+.edit_form {
     padding: 0.5em 1em;
     margin: 2em 0;
     font-weight: bold;
     /* 横幅 */
-    max-width: 800px;
+    max-width: 900px;
     /* 横幅の最大値 */
     border: solid 3px hotpink;
     /*線*/
@@ -104,7 +142,8 @@ th {
     /*角の丸み*/
 }
 
-.create_form p {
+.create_form p,
+.edit_form p {
     margin: 0;
     padding: 0;
 }
@@ -121,4 +160,11 @@ th {
 
 .image_sorry {
     margin: 0px 0px 0px 200px;
+}
+
+hr{
+    border-top: 4px dashed pink;
+    background-color: hotpink;
+    width: 80%;
+    margin-left: 1px;
 }

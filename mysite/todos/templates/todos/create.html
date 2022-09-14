@@ -21,6 +21,7 @@
         <li><a href="{% url 'todos:index'%}">▷ ホーム🏡</a></li>
         <li><a href="{% url 'todos:create'%}"> ▷ Todoを作成する😉</a></li>
         <li><a href="{% url 'todos:priolity'%}"> ▷ 優先度順リスト👑</a></li>
+        <li><a href="{% url 'todos:detail_list'%}"> ▷ 詳細一覧📜</a></li>
     </ul>
     <div class="margin_base">
         <h1 class="menu">😉Todo作成</h1>
@@ -37,22 +38,22 @@
                             <font color="red">(※必須)</font>
                         </p>
                         <p class="todo">内容・詳細：</p>
-                        <p><textarea name="detail" cols="45" rows="4" maxlength="200"
-                                placeholder="200字以内で入力"></textarea>
+                        <p><textarea name="detail" cols="45" rows="4" maxlength="400"
+                                placeholder="400字以内で入力"></textarea>
                         </p>
                         <p>締め切り：<input type="datetime-local" name="deadline" size="50" required>
                             <font color="red">(※必須 日時は今以降のものにしてください)</font>
                         </p>
-                        優先度：
+                        <p>優先度：
                         <select name="priolity" id="priolity" size="1">
                             <option value="5">5</option>
                             <option value="4">4</option>
                             <option value="3">3</option>
                             <option value="2">2</option>
                             <option value="1" selected>1</option>
-                        </select>
+                        </select></p>
 
-                        <p><button type="submit" name="" value="作成">作成</button></p>
+                        <p><button type="submit" name="" value="作成" itle="Todoを作成する">作成</button></p>
                     </div>
                 </fieldset>
             </form>
